@@ -1,0 +1,24 @@
+<div class="container-fluid">
+	<div class="blog-header">
+		<div class="row">
+			<div class="col-sm-8 blog-main">
+				<div class="blog-post" ng-repeat="blog in blogs">
+					<h2 class="blog-post-title">{{blog.Title}}</h2>
+					<p class="blog-post-meta">{{blog.Date}}</p>
+					<hr />
+					<p>{{blog.Content}}</p>
+				</div>
+			</div>
+			<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+				<div class="sidebar-module">
+					<h4>Archives</h4>
+					<ol class="list-unstyled">
+						<a href="#">1</a>
+						<a href="#">2</a>
+						<a href="#">3</a>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
