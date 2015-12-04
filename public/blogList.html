@@ -2,11 +2,11 @@
 	<div class="blog-header">
 		<div class="row">
 			<div class="col-sm-8 blog-main">
-				<div class="blog-post" ng-repeat="blog in blogs">
-					<h2 class="blog-post-title">{{blog.Title}}</h2>
-					<p class="blog-post-meta">{{blog.Date}}</p>
+				<div class="blog-post" ng-repeat="blog in blogs" ng-click="getBlogDetail(blog._id)">
+					<h2 class="blog-post-title">{{blog.title}}</h2>
+					<p class="blog-post-meta">{{blog.created}}</p>
+					<p>{{blog.outline}}</p>
 					<hr />
-					<p>{{blog.Content}}</p>
 				</div>
 			</div>
 			<div class="col-sm-3 col-sm-offset-1 blog-sidebar">

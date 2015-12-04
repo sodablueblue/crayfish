@@ -1,13 +1,9 @@
-var blogList = require('../blogList/controller.js');
-var blog = require('./controller.js');
+var blog = require('./controller');
+var user = require('../user/controller');
 
 module.exports = function(app){
-	app.route('/rawsource/blogs').post(blogList.create, blog.create);
-
+	app.route('/rawsource/bloglist').get(blog.list);
+	app.route('/rawsource/blogs').post(user.currentUser, blog.preCreate, blog.create);
+	app.route('/rawsource/blogs/:blogId').get(blog.read).put(blog.update).delete(blog.delete);
 	app.param('blogId', blog.blogById);
-
-	app.route('/rawsource/blogs/:blogId')
-		.get(blog.read)
-		.put(blog.hasAuthorization, blog.update)
-		.delete(blog.hasAuthorization, blog.delete);
 };

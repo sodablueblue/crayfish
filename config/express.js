@@ -31,7 +31,7 @@ module.exports = function(db){
     
 	/*Set Routers*/
 	require('../app/index/router')(app);
-	require('../app/blogList/router')(app);
+	require('../app/user/router')(app);
 	require('../app/blog/router')(app);
 
 	return server;
