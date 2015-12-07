@@ -21,7 +21,6 @@ var BlogSchema = new Schema({
 
 	title: {
 		type: String,
-		default: 'Title',
 		trim: true,
 		required: 'Title cannot be blank'
 	},

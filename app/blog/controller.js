@@ -29,13 +29,13 @@ exports.create = function(req, res){
 };
 
 exports.list = function(req, res){
-	Blog.find({}, '-content').populate('author', 'nickname').exec(function(err, Blog){
+	Blog.find({}, '-content').populate('author', 'nickname').exec(function(err, blog){
 		if(err){
 			return res.status(400).send({
 				message: 'Cannot list blog list'
 			});
 		}else{
-			res.json(Blog);
+			res.json(blog);
 		}
 	});
 };
@@ -57,7 +57,7 @@ exports.blogById = function(req, res, next, id){
 
 exports.read = function(req, res){
 	res.json(req.blog);
-}
+};
 
 exports.update = function(req, res, next){
 	var blog = req.blog;

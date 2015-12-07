@@ -5,8 +5,9 @@ angular.module('crayfish',
 		'crayfishServices'
 	]).config(['$routeProvider', function($routeProvider){
 		$routeProvider
-		.when('/home', {templateUrl: 'home.html', controller: 'HomeCtrl'})
+		.when('/home', {templateUrl: 'post.html', controller: 'PostCtrl'})
 		.when('/bloglist', {templateUrl: 'blogList.html', controller: 'BlogListCtrl'})
 		.when('/blogs', {templateUrl: 'blog.html', controller: 'BlogCtrl'})
+		.when('/about', {templateUrl: 'about.html', controller: 'AboutCtrl'})
 		.otherwise({redirectTo: '/home'});
 }]);

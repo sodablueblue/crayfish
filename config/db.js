@@ -6,6 +6,7 @@ module.exports = function(){
 
 	require('../app/blog/model');
 	require('../app/user/model');
-	
+	require('../app/about/model');
+	require('../app/post/model');
 	return db;
 }

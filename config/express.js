@@ -33,6 +33,7 @@ module.exports = function(db){
 	require('../app/index/router')(app);
 	require('../app/user/router')(app);
 	require('../app/blog/router')(app);
-
+	require('../app/about/router')(app);
+	require('../app/post/router')(app);
 	return server;
 }
