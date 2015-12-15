@@ -67,3 +67,18 @@ exports.currentUser = function(req, res, next){
 		}
 	});
 };
+
+exports.logout = function(req, res){
+	req.logout();
+	res.redirect('');
+};
+
+exports.requireLogin = function(req, res, next){
+	if(!req.isAuthenticated()){
+		return res.status(400).send({
+			message: 'User is not logged in'
+		});
+	}
+
+	next();
+};

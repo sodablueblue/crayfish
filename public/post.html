@@ -1,11 +1,33 @@
-<div class="container-fluid">
-	<div class="row featurette" ng-repeat="post in posts">
-		<div class="col-md-7">
-			<h2 class="featurette-heading">{{post.title}}</h2>
-			<p class="lead">{{post.comment}}</p>
-		</div>
-		<div class="col-md-5">
-			<img class="featurette-image img-responsive center-block" alt="image!" ng-src="{{post.img}}"/>
+<div class="container">
+	<div class="row" >
+		<div class="col-sm-6 col-md-4" ng-repeat="post in posts">
+			<a href="" class="btn btn-default" data-toggle="modal" data-target=".cf-modal" ng-click="inflatModal(post)">
+				<div class="thumbnail">
+					<img class="img-rounded" alt="{{post.title}}" ng-src="{{post.img}}"/>
+					<div class="caption">
+						{{post.title}}
+					</div>
+				</div>
+			</a>
 		</div>
 	</div>
+
+	<div class="modal fade cf-modal" role="dialog" aira-labelledby="postModal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">{{panel.title}}</h3>
+					</div>
+					<div class="panel-body">
+						<img ng-src="{{panel.img}}">
+					</div>
+					<div class="panel-footer">
+						{{panel.comment}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>

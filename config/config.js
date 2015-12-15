@@ -1,3 +1,4 @@
 module.exports = {
-	db: 'mongodb://localhost/crayfish'
+	db: 'mongodb://localhost/crayfish',
+	sessionSecret: 'cfdevelopmentSessionSecret'
 }

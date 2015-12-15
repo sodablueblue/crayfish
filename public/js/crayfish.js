@@ -9,5 +9,6 @@ angular.module('crayfish',
 		.when('/bloglist', {templateUrl: 'blogList.html', controller: 'BlogListCtrl'})
 		.when('/blogs', {templateUrl: 'blog.html', controller: 'BlogCtrl'})
 		.when('/about', {templateUrl: 'about.html', controller: 'AboutCtrl'})
+		.when('/login', {templateUrl: 'login.html', controller: 'LoginCtrl'})
 		.otherwise({redirectTo: '/home'});
 }]);

@@ -1,3 +1,7 @@
-<div>
-	<p>{{blog}}</p>
+<div class="container">
+	<div class="blog-platform" ng-repeat="blog in blogs">
+		<h3>{{blog.title}}</h3>
+		<date>{{blog.created | date: 'mediumDate'}}</date>
+		<p>{{blog.content}}</p>
+	</div>
 </div>

@@ -2,4 +2,5 @@ angular.module('crayfishServices').factory('Post', ['$resource', function($resou
 	return $resource('rawresource/posts', {}, {
 		query: {method: 'GET', isArray: true}
 	});
+
 }]);

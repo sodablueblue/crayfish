@@ -7,4 +7,8 @@ angular.module('crayfishControllers')
 		});
 
 		$scope.showImg = false;
+
+		$scope.inflatModal = function(post){
+			$scope.panel = post;
+		};
 }]);

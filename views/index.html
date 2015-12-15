@@ -4,43 +4,49 @@
 		<meta charset="utf-8">
 		<meta content="width=device-width, initial-scale=1.0" name="viewport">
 		<title>Crayfish</title>
-		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/main.css">
 	</head>
 	<body>
-	<!-- Header -->
-		<div class="site-wrapper">
-			<div class="site-wrapper-inner">
-				<div class="masthead clearfix">
-					<div class="inner">
-						<h3 class="masthead-brand">Crayfish</h3>
-						<nav>
-							<ul class="nav masthead-nav">
-								<li class="active"><a href="#/home">Home</a></li>
-								<li><a href="#/bloglist">Blogs</a></li>
-								<li><a href="#/about">About</a></li>
-							</ul>
-						</nav>
+		<div class="container">
+			<!-- Header -->
+			<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+				<div class="container">
+					<div class="navbar-header">
+						<a class="nav navbar-brand" href="#/home">Crayfish</a>
+					</div>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav" id="navtabs">
+							<li><a href="#/home">Home</a></li>
+							<li><a href="#/bloglist">Blogs</a></li>
+							<li><a href="#/about">About</a></li>
+						</ul>
+						<div class="navbar-right">
+							<a href="#/login" class="btn btn-success">
+								login
+							</a>
+						</div>
 					</div>
 				</div>
+			</nav>
+
+		<!-- Content -->
+			<div class="view-container container">
+				<div ng-view class="view-frame"></div>
 			</div>
 		</div>
-	<!-- Content -->
-		<div class="view-container">
-			<div ng-view class="view-frame"></div>
-		</div>
-	<!-- Footer -->
+		<!-- Footer -->
 		<footer class="footer">
 			<div class="container">
-				<p class="text-muted">Powered by MongoDB Express Angular2 NodeJS.</p>
-				<p class="text-muted">Sodablueblue</p>
+				<p class="text-muted">Powered by Sodablueblue</p>
 			</div>
 		</footer>
 	<!-- Javascript after this line -->
-		<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
 	    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+		<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="bower_components/bootstrap/js/bootstrap.min.js"></script>
 	    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
 	    <script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
-		<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/crayfish.js"></script>
 		<script type="text/javascript" src="js/controllers/controller.js"></script>
 		<script type="text/javascript" src="js/services/services.js"></script>
@@ -52,5 +58,6 @@
 		<script type="text/javascript" src="js/services/blogServices.js"></script>
 		<script type="text/javascript" src="js/controllers/aboutController.js"></script>
 		<script type="text/javascript" src="js/services/aboutServices.js"></script>
+		<script type="text/javascript" src="js/controllers/loginController.js"></script>
 	</body>
 </html>
