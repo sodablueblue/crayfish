@@ -7,8 +7,7 @@ module.exports = function(app){
 	app.param('userId', user.userById);
 	app.get('/rawresource/signout', user.logout);
 	app.route('/rawresource/signin').post(passport.authenticate('local', {
-		successRedirect: '/',
-		failureRedirect: '/rawresource/signin',
+		successRedirect:'/',
 		failureFlash: true
 	}));
 };

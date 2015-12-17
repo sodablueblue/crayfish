@@ -5,7 +5,7 @@ exports.create = function(req, res, next){
 
 	user.save(function(err){
 		if(err){
-			return res.status(400).send({message: 'Cannot create user'});
+			return res.status(400).send({message: err});
 		}else{
 			res.json(user);
 		}
@@ -82,3 +82,7 @@ exports.requireLogin = function(req, res, next){
 
 	next();
 };
+
+exports.test = function(req, res, next){
+	res.end('test');
+}

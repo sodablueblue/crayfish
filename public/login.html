@@ -1,20 +1,20 @@
 <div class="container">
 	<div class="form-platform">
-		<form>
+		<form novalidate>
 			<div class="form-group">
 				<label for="email">Email address</label>
-				<input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+				<input type="email" class="form-control" id="email" name="email" placeholder="Email" ng-blur="checkEmail()" ng-model="email" required>
 			</div>
 			<div class="form-group">
 				<label for="passwd">Password</label>
-				<input type="password" class="form-control" id="passwd" name="passwd" placeholder="Password" required>
+				<input type="password" class="form-control" id="passwd" name="passwd" placeholder="Password" ng-model="passwd" ng-blur="checkPasswd()" required>
 			</div>
 			<div class="checkbox">
 				<label>
-					<input type="checkbox">Keep me in
+					<input type="checkbox" ng-model="keepIn">Keep me in
 				</label>
 			</div>
-			<button type="submit" class="btn" ng-class="{'disabled': !formReady, 'btn-danger': !formReady, 'btn-success': formReady}">Submit</button>
+			<button type="submit" class="btn" ng-class="{'disabled': !formReady, 'btn-danger': !formReady, 'btn-success': formReady}" ng-click="submit()">Submit</button>
 		</form>
 	</div>
 </div>
