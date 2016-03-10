@@ -8,5 +8,7 @@ module.exports = function(){
 	require('../app/user/model');
 	require('../app/about/model');
 	require('../app/post/model');
+	require('../app/house/model/housePriceModel');
+	require('../app/house/model/meanPriceModel');
 	return db;
 }

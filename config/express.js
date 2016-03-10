@@ -50,5 +50,6 @@ module.exports = function(db){
 	require('../app/blog/router')(app);
 	require('../app/about/router')(app);
 	require('../app/post/router')(app);
+	require('../app/house/router')(app);
 	return server;
 }
