@@ -2,7 +2,6 @@ var lianjia = require('./agent/lianjia.js');
 var HousePrice = require('./model/housePriceModel.js');
 var MeanPrice = require('./model/meanPriceModel.js');
 var Community = require('./model/communityModel.js');
-var async = require('async');
 
 function saveHousePrice(house, agent, community){
 	var housePrice = new HousePrice();
@@ -76,8 +75,12 @@ exports.fetchPrice = function(second){
 };
 
 exports.displayPriceTrend = function(req, res, next){
-	console.log(req.body.xiaoqu);
 	var search = encodeURIComponent(req.body.xiaoqu);
+	if(search.length == 0) {
+		console.log('search is null');
+		return res.json({'error': 'can be null'});
+		
+	}
 	recordCommunity(search, function(){
 		MeanPrice.find({ 'community': search }, '-_id -__v', function(err, data){
 			res.json(data);
