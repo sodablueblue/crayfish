@@ -2,7 +2,6 @@ var request = require('request');
 var cheerio = require('cheerio');
 var q = require('q');
 var defer = q.defer();
-var utf8 = require('utf8');
 
 function getPre(search, cb, reject){
 	var url = 'http://sh.lianjia.com/ershoufang/rs';
