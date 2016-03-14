@@ -3,9 +3,9 @@ var HousePrice = require('./model/housePriceModel.js');
 var MeanPrice = require('./model/meanPriceModel.js');
 var Community = require('./model/communityModel.js');
 
-function saveHousePrice(house, agent, community){
+function saveHousePrice(house, agent){
 	var housePrice = new HousePrice();
-	housePrice.community = community;
+	housePrice.community = house.community;
 	housePrice.fangxing = house.fangxing;
 	housePrice.agent = agent;
 	housePrice.price = house.price;
@@ -34,7 +34,16 @@ function saveMeanPrice(mean){
 function savePrice(bunch){
 	saveMeanPrice(bunch);
 	bunch.houses.forEach(function(item, index){
-		saveHousePrice(item, bunch.agent, bunch.community);
+		var orignal = escape(decodeURIComponent(bunch.community));
+		var comm = unescape(item.community).replace(/;?&#x/ig, '%u');
+		var current = comm.substring(0, comm.length - 1);
+
+		if(current.indexOf(orignal) >= 0){
+			saveHousePrice(item, bunch.agent);
+			//console.log('valid community ', unescape(current));
+		} else {
+			//console.log('find invalid community ', unescape(current) + ' in ' + unescape(orignal));
+		}
 	});
 }
 
@@ -65,7 +74,7 @@ exports.fetchPrice = function(second){
 	var routine = function(){
 		Community.find({}, '', function(err, data){
 			data.forEach(function(item, index){
-				console.log('fetch price', decodeURIComponent(item.name));
+			//	console.log('fetch price', decodeURIComponent(item.name));
 				lianjia.fetchPricePre(decodeURIComponent(item.name), savePrice, console.log);
 			});
 		});
@@ -81,7 +90,19 @@ exports.displayPriceTrend = function(req, res, next){
 	}
 	recordCommunity(search, function(){
 		MeanPrice.find({ 'community': search }, '-_id -__v', function(err, data){
-			res.json(data);
+			if(data.length > 0) {
+				res.json(data);
+			}else{
+				lianjia.fetchPricePre(decodeURIComponent(search), function(data){
+					savePrice(data);
+					var date = new Date();
+					res.json([{
+						'meanPrice': data.meanPrice,
+						'created': 	Math.round(new Date().getTime()/1000),
+						'community': data.community
+					}]);
+				});
+			}
 		});
 	});
 };

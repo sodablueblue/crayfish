@@ -54,7 +54,7 @@ function getPre(search, cb, reject){
 
 	output.community = encodeURIComponent(search.trim());
 	options.url += encodeURIComponent(search.trim());
-	console.log('request', options.url);
+//	console.log('request', options.url);
 	request(options, cbPre);
 };
 
