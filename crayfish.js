@@ -12,10 +12,5 @@ var passport = passport();
 app.listen(7777);
 console.log('Crayfish on http://localhost:7777');
 
-(function(){
-	console.log('fetch data');
-	house.fetchPrice('由由六村');
-	setInterval(function(){
-		house.fetchPrice('由由六村');}
-		 , 3600 * 1000);
-})();
+// Fetch price per 12 hours
+house.fetchPrice(3600 * 12);

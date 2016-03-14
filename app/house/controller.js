@@ -1,6 +1,8 @@
 var lianjia = require('./agent/lianjia.js');
 var HousePrice = require('./model/housePriceModel.js');
 var MeanPrice = require('./model/meanPriceModel.js');
+var Community = require('./model/communityModel.js');
+var async = require('async');
 
 function saveHousePrice(house, agent, community){
 	var housePrice = new HousePrice();
@@ -10,11 +12,10 @@ function saveHousePrice(house, agent, community){
 	housePrice.price = house.price;
 	housePrice.prePrice = house.prePrice;
 	housePrice.birth = house.birth;
-	housePrice.created = new Date().getTime()/1000;
-
+	housePrice.created = Math.round(new Date().getTime()/1000);
 	housePrice.save(function(err){
 		if(err) return console.log(err);
-		return console.log('Save House price!');
+		//return console.log('Save House price!');
 	})
 }
 
@@ -23,12 +24,11 @@ function saveMeanPrice(mean){
 	meanPrice.agent = mean.agent;
 	meanPrice.community = mean.community;
 	var date = new Date();
-	meanPrice.created = new Date().getTime()/1000;
+	meanPrice.created = Math.round(new Date().getTime()/1000);
 	meanPrice.meanPrice = mean.meanPrice;
-
 	meanPrice.save(function(err){
 		if(err) return console.log(err);
-		return console.log('Save mean price!');
+		//return console.log('Save mean price!');
 	});
 }
 
@@ -39,17 +39,48 @@ function savePrice(bunch){
 	});
 }
 
+function recordCommunity(community, cb){
+	Community.find({'name' : community}, '-_id -__v', function(err, data){
+		if(data.length > 0){
+			data.count += 1;
+			new Community(data).save(function(){
+				cb();
+			});
+		}else{
+			new Community({
+				name: community,
+				count: 1
+			}).save(function(){
+				cb();
+			});
+		}
+	})
+}
+
 exports.index = function(req, res){
 	res.render('house.html');
 };
 
-exports.fetchPrice = function(search){
-	lianjia.fetchPricePre(search, savePrice);
+exports.fetchPrice = function(second){
+	var ms = second * 1000;
+	var routine = function(){
+		Community.find({}, '', function(err, data){
+			data.forEach(function(item, index){
+				console.log('fetch price', decodeURIComponent(item.name));
+				lianjia.fetchPricePre(decodeURIComponent(item.name), savePrice, console.log);
+			});
+		});
+	};
+	routine();
+	setInterval(routine, ms);
 };
 
 exports.displayPriceTrend = function(req, res, next){
+	console.log(req.body.xiaoqu);
 	var search = encodeURIComponent(req.body.xiaoqu);
-	MeanPrice.find({ 'community': search }, '-_id -__v', function(err, data){
-		res.json(data);
+	recordCommunity(search, function(){
+		MeanPrice.find({ 'community': search }, '-_id -__v', function(err, data){
+			res.json(data);
+		});
 	});
 };

@@ -4,6 +4,7 @@ $(function(){
 			xiaoqu: $('#xiaoqu').val(),
 			test: 'test'
 		}, function (data, textStatus){
+			$('#resText').empty()
 			$(data).each(function(index, item){
 				var date = new Date(item.created * 1000);
 				$('#resText').prepend(
