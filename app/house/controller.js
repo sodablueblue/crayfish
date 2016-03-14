@@ -75,11 +75,9 @@ exports.fetchPrice = function(second){
 };
 
 exports.displayPriceTrend = function(req, res, next){
-	var search = encodeURIComponent(req.body.xiaoqu);
+	var search = encodeURIComponent(req.body.xiaoqu.trim());
 	if(search.length == 0) {
-		console.log('search is null');
 		return res.json({'error': 'can be null'});
-		
 	}
 	recordCommunity(search, function(){
 		MeanPrice.find({ 'community': search }, '-_id -__v', function(err, data){
