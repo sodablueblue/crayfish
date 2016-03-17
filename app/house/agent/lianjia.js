@@ -36,14 +36,14 @@ function getPre(search, cb, reject){
 				houseItem.community = encodeURIComponent(comm);
 				
 				var spans = item.children('span');
-				houseItem.fangxing = spans.first().children().html().toString();
-				houseItem.area = spans.first().next().html().toString();
+				houseItem.fangxing = spans.first().children().html().toString().trim();
+				houseItem.area = spans.first().next().html().toString().trim().split('&')[0];
 				var arr = item.siblings('.other').children().html().toString().split('>');
-				houseItem.birth = arr[arr.length - 1];
+				houseItem.birth = arr[arr.length - 1].toString().trim().split('&')[0];
 
 				var col3 = col1.siblings('.col-3');
 				houseItem.price = Number(col3.children('.price').children('.num').html().toString()) * 10000;
-				houseItem.prePrice = Number(col3.children('.price-pre').html().toString().split(' ')[0]);
+				houseItem.prePrice = Number(col3.children('.price-pre').html().split('&')[0]);
 				return houseItem
 			}();
 			output.meanPrice = Math.round((output.meanPrice * (i == 0 ? 1 : i) + house.prePrice) / (i + 1));
